@@ -10,6 +10,7 @@ from random import sample, choice
 
 DATA_DIRECTORY = './data/'
 DEFAULT_LANGUAGE = 'EN'
+NUMBER_OF_ANSWERS = 8
 
 class CardsAgainstHumanity(object):
     def __init__(self):
@@ -41,9 +42,13 @@ class CardsAgainstHumanity(object):
             exit("Could not read the question and answer files for this language:")
 
     def getQuestion(self):
-        return choice(self.questions).replace('_', '<.....>')
+        question = choice(self.questions)
+        self.numberOfAnswersNeeded = question.count('_')
+        return question.replace('_', '<.....>')
 
-    def getAnswers(self, amount):
+    def getAnswers(self, amount = NUMBER_OF_ANSWERS):
+        if self.numberOfAnswersNeeded > 1:
+            amount *= self.numberOfAnswersNeeded
         return sample(self.answers, amount)
 
 
@@ -61,7 +66,7 @@ if __name__ == "__main__":
     print("=" * 80, end='\n\n')
 
     print(game.getQuestion())
-    for num, answer in enumerate(game.getAnswers(5)):
+    for num, answer in enumerate(game.getAnswers()):
         print(num +1, ") ", answer.strip(), sep='')
 
 
