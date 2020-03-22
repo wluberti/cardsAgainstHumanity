@@ -9,7 +9,7 @@ from os.path import join, isdir
 from random import sample, choice
 
 DATA_DIRECTORY = './data/'
-DEFAULT_LANGUAGE = 'EN'
+DEFAULT_LANGUAGE = 'NL'
 NUMBER_OF_ANSWERS = 8
 
 class CardsAgainstHumanity(object):
